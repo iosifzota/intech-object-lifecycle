@@ -115,14 +115,16 @@ C++ 11:
 - Iosif: code example
 #### Exceptions: throwing (Cosmin)
 - Slide 11: good point, explain what throwing is (simple example out of bounds or nullptr dereferencing), also careful
+
+### Common sense rules for copy ctor and assignment: (Iosif)
+- Slide 15: nice, but too complicated, it can be simplified
+
 ### Default and compiler generated functions: before C++11 (Iosif)
 - Show the list of rules for compiler generated functions
 - Slide 13: ok, but when do you use the default copy operators? if you don't have pointers in your class, then ALWAYS
 ### What happens when it is used with inheritence? (Iosif)
 - Slide 14: here we could explain in detail what is happening (a deep copy of each base is created)
 - Breif explanation of inheritence.
-### Common sense rules for copy ctor and assignment: (Iosif)
-- Slide 15: nice, but too complicated, it can be simplified
 
 # Part 2
 
