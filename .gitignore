@@ -1,5 +1,6 @@
 mingw64
 *.pdf
 *.png
+*.exe
 engineering-internship/
 playground/
