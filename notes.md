@@ -107,7 +107,7 @@ C++ 11:
 - Slide 10: good point, be more explicit (we have to get rid of the old content when doing assignment, simple example with pointer)
 - Iosif: example "rule of three"
 ### Idiom of writing the copy assignment (Cosmin)
-- Slide 11: careful! you need move fcts for std::swap [TODO] Test if the code works
+- Slide 11: careful! you need move fcts for std::swap [DONE] Test if the code works -> It does not work without move assignment (move ctor is not needed, but adding it would improve performance).
 - What if we try to swap objects of a type that does not have a move constructor? We copy and pay the price.
 #### Exceptions: throwing (Cosmin)
 - Slide 11: good point, explain what throwing is (simple example out of bounds or nullptr dereferencing), also careful
