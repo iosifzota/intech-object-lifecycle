@@ -109,6 +109,7 @@ C++ 11:
 ### Idiom of writing the copy assignment (Cosmin)
 - Slide 11: careful! you need move fcts for std::swap [DONE] Test if the code works as is (no move ctor/assignment). -> It does not work without move assignment (move ctor is optional, but adding it would improve performance).
 - What if we try to swap objects of a type that does not have a move constructor? We copy and pay the price. (!! This works only if the move assignment has been implemented. See above point)
+- Iosif: code example
 #### Exceptions: throwing (Cosmin)
 - Slide 11: good point, explain what throwing is (simple example out of bounds or nullptr dereferencing), also careful
 ### Default and compiler generated functions (Iosif)
