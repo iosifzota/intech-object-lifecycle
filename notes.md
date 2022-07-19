@@ -50,52 +50,47 @@ C++ 11:
 * foo(createVector()).
 
 ---
-== Personal notes ==
-
----
-== Topics ==
+== Content ==
 # Part 1
-## Motivation for object lifecyle
+## Motivation for object lifecyle (Cosmin)
 - Why do we need to manage an object's lifecycle, why and when do we need to copy, move, destruct
 - Slide 3: not explaining why we are talking about an object's lifecycle (memory, in general)
 - object vs class
-## Overview of class with all possible type of ctors declared. For a taste of what's is going to be discussed.
+
+## Overview of class with all possible type of ctors declared. For a taste of what's is going to be discussed. (Cosmin)
 - Slide 5:
-## Ctor/Dtor pair simple example
+
+## Ctor/Dtor pair simple example (Cosmin)
 - Slide 8: looks ok, constructor/destructor pair, add simple example
 - Iosif: code example (it's simple but it's a more elaboarate example to show how useful a destructor can be:  however the part for the interns to implement is very small)
 
-## Scope
+## Scope (Cosmin)
 - Slide 8.
-## When are move or copy ctros and assigments called?
-- Slide 6.
 
-## Default ctor
-- Slide 18-20
-- Slide 20: compare initialization of basic variables with object variables initialization (objects will implicitily initialize -ctor will be called-, while for basic types no initialization (exception if they are global variables))
-
-## References and other members that require initialization
-- Slide 21: move to code along
-## Static member initialization
-- Slide 22: constexpr it's a bit complicated
-## RAII
+## RAII (Iosif)
 - Slide 14
 - Iosif: code example (Unique ptr: without move semantics!!)
 
-## Too many overlaping constructors? Delegate.
-## Breif explanation of inheritence. [Info] Maybe not needed since Eugen will cover this.
-- Slide 15: inheritance not really covered yet.
-- Slide 16: Example with dressing-up and off
-- Slide 17: code along
+## Default ctor (Cosmin)
+- Slide 18-20
+- Slide 20: compare initialization of basic variables with object variables initialization (objects will implicitily initialize -ctor will be called-, while for basic types no initialization (exception if they are global variables))
 
-# Part 2
-## Move vs Copy: use case overview
+## References and other members that require initialization (Iosif)
+- Slide 21: move to code along
+
+## Static member initialization (Iosif)
+- Slide 22: constexpr it's a bit complicated
+
+## When are ctrs and assigments called? (Iosif)
+- Slide 6.
+
+## Move vs Copy: use case overview (Cosmin)
 - Slide 3:
 
-## Move vs Copy: side effects (throwing, valid moved-from state)
-- Slide 4: too complex for begginners, rewrite - unspecified => recognizable deteted state (e.g value of 0 for ints and nullptr for pointers). From the CppTalk the valid, recognizable state is the default state of that object 99% of the time. Unspecified means one cannot say what is containted in the class: e.g. instead of reseting an int member the move ctor did not touch that member; that in member is in an valid but unspecified state.
-
 ## Copy ctor and assignment presentation
+### Shallow vs Deep copy (Cosmin)
+- Slide 15: also add example of shallow copy vs deep copy
+### Copy ctor signature (Cosmin)
 - Slide 6: don't really understand the point with const return type, why?
 - Slide 7: remove template, explain that before destructor delete[] we should check for nullptr, as a minimum -> proper fix is on next slide
 - Slide 8: (motivation for custom copy ctor)
@@ -106,55 +101,54 @@ C++ 11:
     also, to respect RAII, it would be really advised to never expose the raw pointer inside the class
     if someone is able to get that pointer, they will be able to also delete its allocated space and the destructor will have a really bad time
     same with the copy constructor, the new object's destructor will try to free the (maybe) already freed space
-
 - Slide 9: remove template, Why use initialization list vs initialization in block of code (double initialization if the init list is not used)?
 - Slide 10: good point, be more explicit (we have to get rid of the old content when doing assignment, simple example with pointer)
 - Iosif: example "rule of three"
-### Idiom of writing the copy assignment
+### Idiom of writing the copy assignment (Cosmin)
 - Slide 11: careful! you need move fcts for std::swap [TODO] Test if the code works
 - What if we try to swap objects of a type that does not have a move constructor? We copy and pay the price.
-#### Exceptions: throwing
+#### Exceptions: throwing (Cosmin)
 - Slide 11: good point, explain what throwing is (simple example out of bounds or nullptr dereferencing), also careful
-### Default and compiler generated functions
+### Default and compiler generated functions (Iosif)
 - Show the list of rules for compiler generated functions
 - Slide 13: ok, but when do you use the default copy operators? if you don't have pointers in your class, then ALWAYS
-### What happens when it is used with inheritence?
+### What happens when it is used with inheritence? (Iosif)
 - Slide 14: here we could explain in detail what is happening (a deep copy of each base is created)
-
-### Common sense rules for copy ctor and assignment:
+- Breif explanation of inheritence.
+### Common sense rules for copy ctor and assignment: (Iosif)
 - Slide 15: nice, but too complicated, it can be simplified
-#### Shallow vs Deep copy
-- Slide 15: also add example of shallow copy vs deep copy
 
-## Motivation for move semantics
+
+
+
+# Part 2
+
+## Motivation for move semantics (Cosmin)
 - Slide 18: remove template
 - Slide 19-21
-## Simple example of move semantics (the case of Matrix class): ctor
+
+## Simple example of move semantics (the case of Matrix class): ctor (Cosmin)
  - Slide 22
  - Iosif: example "rule of five"
-### Rvalues and lvalues
+ 
+## Move vs Copy: side effects (NOT throwing, valid moved-from state) (Cosmin)
+- Slide 4: too complex for begginners, rewrite - unspecified => recognizable deteted state (e.g value of 0 for ints and nullptr for pointers). From the CppTalk the valid, recognizable state is the default state of that object 99% of the time. Unspecified means one cannot say what is containted in the class: e.g. instead of reseting an int member the move ctor did not touch that member; that in member is in an valid but unspecified state.
+### Rvalues and lvalues (Iosif)
 - Slide 23: explain why, Iosif write example
-
-### Rvalues, lvalules and move, copy semantics interactions
-### Tricky point
+### Rvalues, lvalules and move, copy semantics interactions (Iosif)
+- Slide 24
+### Tricky point (Cosmin)
 - Slide 24: maybe move the initializer list in the declaration (it's not a good idea to combine initializer lists with a function body), there is a case where you cannot do anything: when you have references in class; if you do not give any initializer list, you will first initialize dim and elem with default values and then reassign them
 
-## Simple example of move semantics continued: asignment
+## Simple example of move semantics continued: asignment (Iosif)
 - Slide 25: initialization vs assignment: explain when the move constructor is called and when the move assignment is called (do this for copy and move, it's the same)
 
-## How does the compiler know when to call move or copy ctors or assigments
+## How does the compiler know when to call move or copy ctors or assigments (Iosif)
 - Slide 26: good point, lvalue and rvalue are EXPRESSION relevant, they do not exist in general; in theory lvalue and rvalue are possible value categories of an experssion; use example from https://www.youtube.com/watch?v=St0MNEU5b0o -> just tell the compiler which function to call for this operation -> it's up to you how you implement each, you could do copy in move ctr if you so wish
 
-## Returning large objects
+## Returning large objects (Cosmin)
 - Slide 27: good point, maybe rephrase
 - Emphasize that the compiler calls the move ctor on return
 
-### Alternatives to implement moving object without move semantics
+### Alternatives to implement moving object without move semantics (Iosif)
 - Slide 28: give answers to the questions if we choose to keep them
-
-
-
-
-
-== Final content page ==
-
