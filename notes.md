@@ -8,7 +8,7 @@ PDFs: https://euderz1cloud01.in-tech.global/index.php/f/20739232
 * RAII.
 
 # Examples
-* RAII: scoped_lock example [TODO]
+* RAII: scoped_lock example [NOT(instead unique pointer fulfils this topic)]
 * Creating more than 1 object in expressions. [Drafted]
 
 # Rules for compiler generated functions
@@ -49,7 +49,9 @@ C++ 11:
 * An exercise/presentation to demonstrate && & and copy semantics (using a function).
 * foo(createVector()).
 
----
+------------------------------------------------
+------------------------------------------------
+
 == Content ==
 # Part 1
 ## Motivation for object lifecyle (Cosmin)
@@ -117,9 +119,6 @@ C++ 11:
 - Breif explanation of inheritence.
 ### Common sense rules for copy ctor and assignment: (Iosif)
 - Slide 15: nice, but too complicated, it can be simplified
-
-
-
 
 # Part 2
 
