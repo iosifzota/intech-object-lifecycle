@@ -20,6 +20,7 @@ struct SwapableClass
     {
         SwapableClass tmp{other};
         swap(*this, tmp); // using the swap from STL
+        // How about implementing our own swap?
         return *this;
     }
 
