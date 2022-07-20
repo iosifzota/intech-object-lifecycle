@@ -2,7 +2,7 @@
 #define __RULEOFTHREECORRECT_H__
 
 #include <utility>
-#include <ostream>
+#include <iostream>
 
 using namespace std;
 
@@ -23,18 +23,12 @@ public:
 
     Class3 &operator=(const Class3 &other)
     {
-        cleanup();
         Class3 tmp(other);
         swap(*this, tmp);
         return *this;
     }
 
     ~Class3()
-    {
-        cleanup();
-    }
-
-    void cleanup()
     {
         if (nullptr != m_p)
         {
@@ -53,30 +47,39 @@ public:
         *m_p = newVal;
     }
 
-    friend ostream &operator<<(ostream &out, const Class3 &mc);
-};
-
-ostream &operator<<(ostream &out, const Class3 &mc)
-{
-    if (nullptr != mc.m_p)
+    void print()
     {
-        return out << *(mc.m_p);
+        if (nullptr != m_p)
+        {
+            cout << *(m_p);
+        }
+        else
+        {
+            cout << "cannot access nullptr";
+        }
     }
-    return out << "cannot access nullptr";
-}
+};
 
 void testRuleOfThreeCorrect()
 {
     Class3 mc(3);
-    cout << "mc: " << mc << endl;
+    cout << "mc: ";
+    mc.print();
+    cout << endl;
 
     Class3 mccopy = mc;
-    cout << "mccopy: " << mccopy << endl;
+    cout << "mccopy: ";
+    mccopy.print();
+    cout << endl;
 
     mccopy.setVal(4);
     cout << "== Modified mccopy ==\n";
-    cout << "mc: " << mc << endl;
-    cout << "mccopy: " << mccopy << endl;
+    cout << "mc: ";
+    mc.print();
+    cout << endl;
+    cout << "mccopy: ";
+    mccopy.print();
+    cout << endl;
 }
 
 #endif // __RULEOFTHREECORRECT_H__
