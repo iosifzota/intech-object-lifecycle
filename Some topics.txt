@@ -1,9 +1,0 @@
-# Constructors, destructors
-* RAII
-* Delegating Constructors
-
-# Copy, Move
-* Rules for compiler generated functions
-* Rule of three: destructor + copy constructor + copy assignment operator (if any from the list is defined then probably all three should be defined)
-* Rule of five: rule of 3 + move constructor + move assignment (only if move is needed for the class) (unlike the rule of three failing to provide the move imples only a loss in performance)
-* Rvalue vs Rvalue reference
