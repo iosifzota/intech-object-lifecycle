@@ -2,13 +2,13 @@
 #define __SMARTPTR_H__
 
 #include <iostream>
+#include "Point3D.hpp"
 
 using namespace std;
 
-template<typename T>
 class UniquePtr
 {
-    T *m_ptr;
+    Point3D *m_ptr;
 
 public:
 
@@ -17,7 +17,7 @@ public:
         // empty
     }
 
-    UniquePtr(T *ptr) : m_ptr{ptr}
+    UniquePtr(Point3D *ptr) : m_ptr{ptr}
     {
         // empty
     }
@@ -37,7 +37,7 @@ public:
         }
     }
 
-    T &operator*()
+    Point3D &operator*()
     {
         if (nullptr != m_ptr)
         {
@@ -46,7 +46,7 @@ public:
         throw logic_error("Attempt to dereference nullptr.");
     }
 
-    T *operator->()
+    Point3D *operator->()
     {
         if (nullptr != m_ptr)
         {
@@ -56,12 +56,12 @@ public:
         throw logic_error("Attempt to dereference nullptr.");
     }
 
-    T *get() const
+    Point3D *get() const
     {
         return m_ptr;
     }
 
-    void set(T * ptr)
+    void set(Point3D * ptr)
     {
         if (nullptr == ptr)
         {
@@ -70,7 +70,7 @@ public:
         throw logic_error("Error: Dangling pointer.");
     }
 
-    void unsafeOverwrite(T *ptr)
+    void unsafeOverwrite(Point3D *ptr)
     {
         m_ptr = ptr;
     }

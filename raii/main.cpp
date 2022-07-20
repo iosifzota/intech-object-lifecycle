@@ -5,38 +5,9 @@
 
 using namespace std;
 
-class Point3D
-{
-    int m_x, m_y, m_z;
-public:
-    Point3D(int x, int y, int z) 
-        : m_x{x}, m_y{y}, m_z{z}
-    {
-        // empty
-    }
-
-    int getX() const
-    {
-        return m_x;
-    }
-
-    int getY() const
-    {
-        return m_y;
-    }
-
-    int getZ() const
-    {
-        return m_z;
-    }
-};
-
 void doSomeProcessingNoLeaks()
 {
-    UniquePtr<Point3D> ptr{new Point3D(1,3,-1)};
-
-    ptr->getX();
-    ptr->getY();
+    // Allocate a Point3D object on the heap but give it to UniquePtr
 
     // memory is freed
 }
@@ -44,10 +15,7 @@ void doSomeProcessingNoLeaks()
 
 void doSomeProcessingWithLeaks()
 {
-    Point3D *ptr = new Point3D(1,3,-1);
-
-    ptr->getX();
-    ptr->getY();
+    // allocate a Pointe3D object on the heap
     
     // intentionally forgot to free memory
     // memory is leaked
