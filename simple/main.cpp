@@ -3,12 +3,10 @@
 
 using namespace std;
 
-/*
-    [TODO] Nothing is written to the output file. Check why!
-*/
+
 int main()
 {   
-    //testBadScenario();
-    testGoodScenario();
+    testBadScenario();
+    // testGoodScenario();
     return 0;
 }

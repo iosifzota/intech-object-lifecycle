@@ -1,52 +1,49 @@
 #ifndef __LOGGER_H__
 #define __LOGGER_H__
 
-#include "FileStreamManager.hpp"
+#include "OutputStream.hpp"
 
 class GoodLogger
 {
-    fstream &m_fstream;
-    const string m_fileName;
+    ostream &out;
 
 public:
-    GoodLogger(const string &fileName) : m_fstream{getFileStream(fileName)}, m_fileName{fileName}
+    GoodLogger() : out{getOutputStream()}
     {
         // empty
     }
 
     ~GoodLogger()
     {
-        closeFileStream(m_fileName);
+        closeOutputStreamSpecial();
     }
 
     void log(const string& str)
     {
-        m_fstream << str;
+        out << str;
     }
 };
 
 class LoggerWithNoDestructor
 {
-    fstream &m_fstream;
-    const string m_fileName;
+    ostream &out;
 
 public:
-    LoggerWithNoDestructor(const string &fileName) : m_fstream{getFileStream(fileName)}, m_fileName{fileName}
+    LoggerWithNoDestructor() : out{getOutputStream()}
     {
         // empty
     }
 
     void log(const string& str)
     {
-        m_fstream << str;
+        out << str;
     }
 };
 
-const string kFileName = "test.txt";
 
 void testBadFirstWrite()
 {
-    LoggerWithNoDestructor logger{ kFileName};
+    LoggerWithNoDestructor logger;
     logger.log("output");
 
     // Close the stream manually if you know how!
@@ -54,16 +51,16 @@ void testBadFirstWrite()
 
 void testGoodFirstWrite()
 {
-    GoodLogger logger{ kFileName};
-    logger.log("output");
+    GoodLogger logger;
+    logger.log("output\n");
 
     // I don't have to worry about cleanup.
 }
 
 void testSecondWrite()
 {
-    GoodLogger logger{ kFileName};
-    logger.log("second write");
+    GoodLogger logger;
+    logger.log("second write\n");
 }
 
 void testBadScenario()
