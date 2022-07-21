@@ -16,7 +16,7 @@ void testInMemory()
 
 void testBasic()
 {
-    Square square(1,1, 2);
+    Square square(1, 1, 2);
 
     // Call of Square function
     cout << "Len: " << square.getLen() << endl;
@@ -29,4 +29,6 @@ int main()
 {
     // testBasic();
     // testInMemory();
+
+    return 0;
 }
