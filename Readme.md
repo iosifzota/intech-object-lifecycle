@@ -1,6 +1,6 @@
 # Object lifecycle: exercies
 ## Structure
-* 01 - 07 is the order of the exercies in the presentations.
+* 01 - 07 are the exercies, in order, used in the presentations.
 * 00 - some exercies that were not used in the presentations.
 
 ## How to run
